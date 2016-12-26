@@ -24,4 +24,4 @@
   (DatomicDatabase
    db-uri
    (first (Util/readAll (io/reader (io/resource "data/schema.edn"))))
-   (first (Util/readAll (io/readre (io/resource "data/initial.edn"))))))
+   (first (Util/readAll (io/reader (io/resource "data/initial.edn"))))))
