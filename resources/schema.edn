@@ -1,0 +1,48 @@
+[;; indicação de data e hora
+ ;; oficio
+ {:db/ident :oficio/ref
+  :db/valueType :db.type/string
+  :db/cardinality :db.cardinality/one
+  :db/doc "Referencia do oficio"}
+ {:db/ident :oficio/responsavel
+  :db/valueType :db.type/string
+  :db/cardinality :db.cardinality/one
+  :db/doc "Responsavel pelo oficio"}
+ ;; apreensao
+ {:db/ident :apreensao/data
+  :db/valueType :db.type/instant
+  :db/cardinality :db.cardinality/one
+  :db/doc "Indicação de data e hora da apreensão"}
+ {:db/ident :apreensao/metodo
+  :db/valueType :db.type/ref
+  :db/cardinality :db.cardinality/one
+  :db/doc "Metodo da apreensao"}
+ ;; enums de metodos
+ {:db/ident :metodo/revista-cela}
+ {:db/ident :metodo/revista-intima}
+ {:db/ident :metodo/objeto-arremessado}
+ {:db/ident :metodo/busca-pessoal-agente}
+ {:db/ident :metodo/busca-pessoal-advogado}
+ {:db/ident :metodo/busca-pessoal-p-civil}
+ {:db/ident :metodo/busca-pessoal-m-p-carceraria}
+ {:db/ident :metodo/busca-pessoal-d-publico}
+ {:db/ident :metodo/busca-pessoal-demais}
+ ;; unidade
+ {:db/ident :unidade/local
+  :db/valueType :db.type/string
+  :db/cardinality :db.cardinality/one
+  :db/doc "Localizacao da unidade prisional"}
+ {:db/ident :unidade/piso-pavilhao
+  :db/valueType :db.type/string
+  :db/cardinality :db.cardinality/one
+  :db/doc "Piso ou pavilhao encontrado"}
+ ;; material
+ {:db/ident :material/tipo
+  :db/valueType :db.type/ref
+  :db/cardinality :db.cardinality/one
+  :db/doc "Tipo de material apreendido"}
+ {:db/ident :tipo/arma-branca}
+ {:db/ident :tipo/arma-de-fogo}
+ {:db/ident :tipo/arma-de-contusao}
+
+]
