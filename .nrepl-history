@@ -1,3 +1,0 @@
-exit
-bin/run -m datomic.peer-server -p 8998 -a myaccesskey,mysecret -d firstdb,datomic:mem://firstdb
-exit
