@@ -1,0 +1,2 @@
+{:db
+ #profile {:dev {:uri "datomic:mem://chat"}}}

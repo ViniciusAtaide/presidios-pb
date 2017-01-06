@@ -1,0 +1,114 @@
+[{:unidade/local "Penitenciária M. Desembargador Flósculo da Nóbrega-Róger"}
+ {:unidade/local "Instituto de Psiquiatria Forense - IPF"}
+ {:unidade/local "Presidio Desesmbargador Silvio Porto"}
+ {:unidade/local "Penitenciária C. Geraldo Beltrão"}
+ {:unidade/local "Complexo Agrodindustrial de Mangabeira"}
+ {:unidade/local "Centro de Reeducação Feminina Maria Júlia Maranhão"}
+ {:unidade/local "Penitenciária Juiz Hitler Cantalice - Média"}
+ {:unidade/local "Penitenciária Modelo PB 1 e PB 2"}
+ {:unidade/local "Penitenciária Especial Falcão Espínola"}
+ {:unidade/local "Cadeia Pública de Alhandra"}
+ {:unidade/local "Cadeia Pública de Pedras de Fogo"}
+ {:unidade/local "Penitenciária Padrão de Santa Rita"}
+ {:unidade/local "Cadeia Pública de Santa Rita"}
+ {:unidade/local "Cadeia Pública de Bayeux"}
+ {:unidade/local "Cadeia Pública de Cruz do Espírito Santo"}
+ {:unidade/local "Presídio Regional de Sapé"}
+ {:unidade/local "Cadeia Pública de Jacaraú"}
+ {:unidade/local "Cadeia Pública de Rio Tinto"}
+ {:unidade/local "Penitenciária Padrão João B. Carneiro"}
+ {:unidade/local "Presídio Regional de Guarabira"}
+ {:unidade/local "Cadeia Pública de Alagoa Grande"}
+ {:unidade/local "Cadeia Pública de Alagoinha"}
+ {:unidade/local "Cadeia Pública de Araruna"}
+ {:unidade/local "Cadeia Pública de Areia"}
+ {:unidade/local "Cadeia Pública de Bananeiras"}
+ {:unidade/local "Cadeia Pública de Belém"}
+ {:unidade/local "Cadeia Pública de Caiçara"}
+ {:unidade/local "Cadeia Pública de Pilões"}
+ {:unidade/local "Cadeia Pública de Serraria"}
+ {:unidade/local "Cadeia Pública de Itabaiana"}
+ {:unidade/local "Cadeia Pública de Ingá"}
+ {:unidade/local "Cadeia Pública de Pilar/Gurinhem"}
+ {:unidade/local "Penitenciária Reg. Raimundo Ásfora"}
+ {:unidade/local "Penitenciária Jurista Agnelo Amorim"}
+ {:unidade/local "Penitenciária Padrão de CG"}
+ {:unidade/local "Penitenciária Fem. de CG"}
+ {:unidade/local "Cadeia Pública de Boqueirão"}
+ {:unidade/local "Cadeia Pública de Aroeiras"}
+ {:unidade/local "Cadeia Pública de Queimadas"}
+ {:unidade/local "Cadeia Pública de Umbuzeiro"}
+ {:unidade/local "Cadeia Pública de Esperança"}
+ {:unidade/local "Cadeia Pública de Alagoa Nova"}
+ {:unidade/local "Cadeia Pública de Pocinhos"}
+ {:unidade/local "Cadeia Pública de Remígio"}
+ {:unidade/local "Cadeia Pública de Picuí"}
+ {:unidade/local "Cadeia Pública de Barra de Sta Rosa"}
+ {:unidade/local "Cadeia Pública de Cuité"}
+ {:unidade/local "Cadeia Pública de Soledade"}
+ {:unidade/local "Cadeia Pública de Juazeirinho"}
+ {:unidade/local "Cadeia Pública de Taperoá"}
+ {:unidade/local "Cadeia Pública de Monteiro"}
+ {:unidade/local "Cadeia Pública de Prata"}
+ {:unidade/local "Cadeia Pública de São João do Cariri"}
+ {:unidade/local "Cadeia Pública de Serra Branca"}
+ {:unidade/local "Cadeia Pública de Sumé"}
+ {:unidade/local "Penitenciária Padrão Romero Nóbrega"}
+ {:unidade/local "Presídio Feminino de Patos"}
+ {:unidade/local "Cadeia Pública de Malta"}
+ {:unidade/local "Cadeia Pública de Santa Luzia"}
+ {:unidade/local "Cadeia Pública de Santana dos Garrotes"}
+ {:unidade/local "Penitenciária Padrão de Cajazeiras"}
+ {:unidade/local "Cadeia Pública de Cajazeiras"}
+ {:unidade/local "Cadeia Pública de Bonito de Santa Fé"}
+ {:unidade/local "Cadeia Pública de São José do Rio do Peixe"}
+
+ {:material/tipo :tipo/arma-branca
+  :material/nome "Espeto artesanal pequeno"}
+ {:material/nome "Espeto artesanal grande"
+  :material/tipo :tipo/arma-branca}
+ {:material/nome "Faca industrial"
+  :material/tipo :tipo/arma-branca}
+ {:material/nome "Facão industrial"
+  :material/tipo :tipo/arma-branca}
+ {:material/nome "Outras artesanais"
+  :material/tipo :tipo/arma-de-fogo}
+ {:material/nome "Revólver"
+  :material/tipo :tipo/arma-de-fogo}
+ {:material/nome "Pistola"
+  :material/tipo :tipo/arma-de-fogo}
+ {:material/nome "Outra"
+  :material/tipo :tipo/arma-de-contusao}
+ {:material/nome "Barra de ferro"
+  :material/tipo :tipo/arma-de-contusao}
+ {:material/nome "Barrote de madeira"
+  :material/tipo :tipo/arma-de-contusao}
+ {:material/nome "Outro"
+  :material/tipo :tipo/arma-de-contusao}
+
+ {:material/nome "Celular"
+  :material/tipo :tipo/telecomunicacao}
+ {:material/nome "Bateria"
+  :material/tipo :tipo/telecomunicacao}
+ {:material/nome "Carregador de celular"
+  :material/tipo :tipo/telecomunicacao}
+ {:material/nome "Chip Claro"
+  :material/tipo :tipo/telecomunicacao}
+ {:material/nome "Chip Tim"
+  :material/tipo :tipo/telecomunicacao}
+ {:material/nome "Chip Não Identificado"
+  :material/tipo :tipo/telecomunicacao}
+ {:material/nome "Outro"
+  :material/tipo :tipo/telecomunicacao}
+
+ {:material/nome "Bebida"
+  :material/tipo :tipo/droga}
+ {:material/nome "Substância Semelhante a Maconha"
+  :material/tipo :tipo/droga}
+ {:material/nome "Substância Semelhante a Cocaína"
+  :material/tipo :tipo/droga}
+ {:material/nome "Remédio"
+  :material/tipo :tipo/droga}
+ {:material/nome "Outros Materiais Ilícitos"
+  :material/tipo :tipo/droga}
+ ]
