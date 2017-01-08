@@ -1,7 +1,8 @@
 (ns om-learn.db
   (:require [clojure.java.io :as io]
             [com.stuartsierra.component :as c]
-            [datomic.api :as d]))
+            [datomic.api :as d]
+            [clojure.edn :refer [read]]))
 
 (defrecord DatomicDatabase [uri schema initial-data connection]
   c/Lifecycle
@@ -18,5 +19,5 @@
 (defn new-database [db-uri]
   (.DatomicDatabase
    db-uri
-   (first (datomic.Util/readAll (io/reader (io/resource "schema.edn"))))
-   (first (datomic.Util/readAll (io/reader (io/resource "initial-data.edn"))))))
+   (first (read (io/reader (io/resource "schema.edn"))))
+   (first (read (io/reader (io/resource "initial-data.edn"))))))

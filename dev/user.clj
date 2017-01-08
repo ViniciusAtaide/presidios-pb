@@ -12,12 +12,10 @@
       (system/new-dependency-map))
      config)))
 
-
 (reloaded.repl/set-init! new-dev-system)
 
 (defn cljs-repl
   "abre um repl clojurescript"
   []
-  (eval
-   '(do (in-ns 'boot.user)
-        (start-repl))))
+  (do (in-ns 'boot.user)
+      (start-repl)))

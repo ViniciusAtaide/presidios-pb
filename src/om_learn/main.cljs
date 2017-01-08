@@ -1,5 +1,5 @@
 (ns om-learn.main
-  :require [om-learn.app :as om-learn])
+  (:require [om-learn.app :as om-learn]))
 
 
 (defn init []
