@@ -1,5 +1,7 @@
-(ns om-learn.server
-  (:require [yada.yada :as yada]))
+(ns om-learn.server)
 
-(defn content-routes []
-  ["/" (yada/handler "hello")])
+(defn handler [req]
+  {:status 200
+   :headers {"Content-Type" "text/html"}
+   :body "Hello"})
+  
