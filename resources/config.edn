@@ -1,5 +1,0 @@
-{:db
- #profile {:dev {:uri "datomic:mem://chat"}}
- :server
- #profile {:dev {:port 8080
-                 :host "localhost"}}}

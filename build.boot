@@ -2,31 +2,57 @@
  :source-paths #{"src"}
  :resource-paths #{"resources"}
  :dependencies '[[org.clojure/clojure "1.9.0-alpha14"]
-                 [org.clojure/clojurescript "1.9.293"]
+                 [org.clojure/clojurescript "1.9.293"
+                  :exclusions [org.clojure/clojure]]
 
                  [org.clojure/tools.nrepl "0.2.12"]
+                 [org.clojure/tools.namespace "0.3.0-alpha3"
+                  :exclusions [org.clojure/tools.reader]]
 
-                 [org.clojure/core.async "0.2.395"]
-                 [org.clojure/test.generative "0.5.2"]
-                 [com.datomic/datomic-free "0.9.5544"]
+                 [org.clojure/core.async "0.2.395"
+                  :exclusions [org.clojure/tools.reader]]
+                 [org.clojure/test.generative "0.5.2"
+                  :exclusions [org.clojure/tools.namespace]]
+                 [com.datomic/datomic-free "0.9.5544"
+                  :exclusions [commons-codec
+                               com.google.guava/guava
+                               org.clojure/clojure]]
                  [com.stuartsierra/component "0.3.2"]
 
                  [environ "1.1.0"]
                  [boot-environ "1.1.0"]
 
                  [adzerk/boot-cljs-repl "0.3.3"]
-                 [adzerk/boot-cljs "1.7.228-2" :scope "test"]
+                 [adzerk/boot-cljs "2.0.0-SNAPSHOT" :scope "test"]
                  [adzerk/boot-reload "0.5.0" :scope "test"]
 
-                 [org.danielsz/system "0.3.1"]
+                 [org.danielsz/system "0.3.2-SNAPSHOT"
+                  :exclusions [com.stuartsierra/component
+                               org.clojure/tools.reader]]
 
-                 [reloaded.repl "0.2.3"]
-                 [com.cemerick/piggieback "0.2.1" :scope "test"]
-                 [weasel "0.7.0" :scope "test"]
+                 [reloaded.repl "0.2.3"
+                  :exclusions [com.stuartsierra/component
+                               com.stuartsierra/dependency
+                               org.clojure/tools.namespace]]
+                 [com.cemerick/piggieback "0.2.2-SNAPSHOT" :scope "test"
+                  :exclusions [com.google.guava/guava
+                               com.google.javascript/closure-compiler-externs
+                               org.clojure/tools.reader]]
+                 [weasel "0.7.0" :scope "test"
+                  :exclusions [http-kit com.google.guava/guava
+                               com.google.javascript/closure-compiler-externs
+                               org.clojure/tools.reader]]
 
                  [org.omcljs/om "1.0.0-alpha47"]
-                 [http-kit "2.2.0"]
-                 [ring "1.5.1"]])
+                 [http-kit "2.3.0-alpha1"]
+                 [ring "1.6.0-beta7"
+                  :exclusions [commons-codec
+                               org.clojure/java.classpath
+                               org.clojure/tools.reader
+                               org.clojure/tools.namespace]]]
+
+ :exclusions ['org.clojure/clojure
+              'org.clojure/clojurescript])
 
 
 (require '[adzerk.boot-cljs :refer [cljs]]
