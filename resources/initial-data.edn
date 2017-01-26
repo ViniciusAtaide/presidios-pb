@@ -110,5 +110,5 @@
  {:material/nome "Remédio"
   :material/tipo :tipo/droga}
  {:material/nome "Outros Materiais Ilícitos"
-  :material/tipo :tipo/droga}
- ]
+  :material/tipo :tipo/droga}]
+
