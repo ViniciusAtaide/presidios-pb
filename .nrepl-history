@@ -1,0 +1,5 @@
+(require '[datomic.api :as d])
+(d/create-database "datomic:mem://chat")
+quit
+(dev)
+exit

@@ -44,11 +44,11 @@
 
                  [org.omcljs/om "1.0.0-alpha47"]
                  [http-kit "2.3.0-alpha1"]
-                 [ring "1.6.0-beta7"
-                  :exclusions [commons-codec
-                               org.clojure/java.classpath
-                               org.clojure/tools.reader
-                               org.clojure/tools.namespace]]
+
+                 [javax.servlet/servlet-api "2.5"]
+                 [ring/ring-core "1.5.1"]
+                 [ring/ring-jetty-adapter "1.5.1"]
+
                  [onetom/boot-lein-generate "0.1.3" :scope "test"]]
 
  :exclusions ['org.clojure/clojure
@@ -70,20 +70,20 @@
 
 `(set-env!
   :dependencies
-  #(conj % '[com.datomic/datomic-free "0.9.5554"
+  #(conj % '[com.datomic/datomic-pro "0.9.5554"
              :exclusions [commons-codec
                           com.google.guava/guava]]))
 
 (require '[om-learn.system :as system])
 
-(deftask deps []
-  (boot.lein/generate))
+(boot.lein/generate)
 
 (deftask dev []
   (comp
     (environ :env {:http-port "3000"
                    :db-uri "datomic:mem://chat"})
     (watch)
+    (notify :visual true :title "CLJS")
     (system :sys #'dev-system :auto true :files ["server.clj"])
     (reload)
     (cljs-repl)
