@@ -1,2 +1,2 @@
-{:require [om-learn.main]
- :init-fns [om-learn.main/init]}
+{:require [om-learn.app]
+ :compiler-options {:asset-path "js/app.out"}}

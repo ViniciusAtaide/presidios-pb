@@ -33,8 +33,8 @@
 
 (def reconciler
   (om/reconciler {:state  app-state
-                  :parser (om/parser {:read read :mutate mutate})}))
+                  :parser parser}))
 
-(defn init [section]
-  (om/add-root! reconciler
-                App section))
+(enable-console-print!)
+(when-let [section (. js/document (.getElementById "app"))]
+  (om/add-root! reconciler App section))

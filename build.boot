@@ -17,7 +17,6 @@
 
                  [com.stuartsierra/component "0.3.2"]
 
-                 [hiccup "1.0.5"]
                  [environ "1.1.0"]
                  [boot-environ "1.1.0"]
 
@@ -33,6 +32,9 @@
                   :exclusions [com.stuartsierra/component
                                com.stuartsierra/dependency
                                org.clojure/tools.namespace]]
+
+                 [pandeiro/boot-http "0.7.6"]
+
                  [com.cemerick/piggieback "0.2.2-SNAPSHOT" :scope "test"
                   :exclusions [com.google.guava/guava
                                com.google.javascript/closure-compiler-externs
@@ -43,11 +45,6 @@
                                org.clojure/tools.reader]]
 
                  [org.omcljs/om "1.0.0-alpha47"]
-                 [http-kit "2.3.0-alpha1"]
-
-                 [javax.servlet/servlet-api "2.5"]
-                 [ring/ring-core "1.5.1"]
-                 [ring/ring-jetty-adapter "1.5.1"]
 
                  [onetom/boot-lein-generate "0.1.3" :scope "test"]]
 
@@ -80,14 +77,16 @@
 
 (deftask dev []
   (comp
+    (serve)
     (environ :env {:http-port "3000"
                    :db-uri "datomic:mem://chat"})
     (watch)
     (notify :visual true :title "CLJS")
     (system :sys #'dev-system :auto true :files ["server.clj"])
-    (reload)
-    (cljs-repl)
+    (reload :ids #{"js/app"})
+    (cljs-repl :ids #{"js/app"})
     (cljs :source-map true
+          :ids #{"js/app"}
           :compiler-options {:parallel-build true
                              :compiler-stats true})
     (target)))
