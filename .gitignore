@@ -2,3 +2,4 @@
 project.clj
 .nrepl-port
 target/
+out/

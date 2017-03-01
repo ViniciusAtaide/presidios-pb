@@ -1,40 +1,51 @@
 (ns om-learn.app
-  (:require [om.next :as om]
+  (:require [om.next :as om :refer-macros [defui]]
+            [om-learn.routes.index :refer [index]]
             [goog.dom :as gdom]
             [om.dom :as dom]))
 
-(def app-state (atom {:counter/count 0}))
+(defonce app-state (atom {:counter/count 0}))
 
-(def parser (om/parser {:read read :mutate mutate}))
+(defmulti read om/dispatch)
+(defmulti mutate om/dispatch)
 
-(defmulti read (fn [env key params] key))
+(defmethod mutate 'increment
+  [{:keys [state]} _ _]
+  {:action
+   #(swap! state update-in [:counter/count] inc)})
 
-(defmethod read :default
-  [{:keys [state]} key params]
-  (let [st @state]
-    (if-let [[_ value] (find st key)]
-      {:value value}
-      {:value :not-found})))
+(defmethod mutate 'decrement
+  [{:keys [state]} _ _]
+  {:action
+   #(swap! state update-in [:counter/count] dec)})
 
 (defmethod read :counter/count
   [{:keys [state]} key params]
-  {:value (:count @state)})
+  {:value (:counter/count @state)})
 
-(defui App
+(def parser (om/parser {:read read :mutate mutate}))
+
+(defui ^:once App
   static om/IQuery
   (query [this]
-    '[{:keys [:counter/count]} (om/props this)])
+    '[:counter/count])
   Object
   (render [this]
     (let [{:keys [counter/count]} (om/props this)]
-            (dom/div nil
-                     (dom/h2 nil "Hello World")
-                     (dom/p nil count)))))
+      (dom/div nil
+               (dom/p nil count)
+               (index)
+               (dom/button
+                 #js{:onClick #(om/transact! this '[(increment)])}
+                 "Incrementa")
+               (dom/button
+                 #js{:onClick #(om/transact! this '[(decrement)])}
+                 "Decrementa")))))
 
-(def reconciler
-  (om/reconciler {:state  app-state
-                  :parser parser}))
+(defonce reconciler
+         (om/reconciler {:state  app-state
+                         :parser parser}))
 
 (enable-console-print!)
-(when-let [section (. js/document (.getElementById "app"))]
-  (om/add-root! reconciler App section))
+
+(om/add-root! reconciler App (gdom/getElement "app"))

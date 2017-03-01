@@ -3,3 +3,7 @@
 quit
 (dev)
 exit
+(dev)
+(stop)
+exit
+(boot (dev))

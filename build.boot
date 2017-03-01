@@ -1,55 +1,62 @@
 (set-env!
- :source-paths #{"src/clj" "src/cljs"}
- :resource-paths #{"resources"}
- :dependencies '[[org.clojure/clojure "1.9.0-alpha14"]
-                 [org.clojure/clojurescript "1.9.293"
-                  :exclusions [org.clojure/clojure]]
-                 [compojure "1.5.2"]
-                 [com.datomic/datomic-free "0.9.5554"]
-                 [org.clojure/tools.nrepl "0.2.12"]
-                 [org.clojure/tools.namespace "0.3.0-alpha3"
-                  :exclusions [org.clojure/tools.reader]]
+  :source-paths #{"src/clj" "src/cljs"}
+  :resource-paths #{"resources"}
+  :dependencies '[[org.clojure/clojure "1.9.0-alpha14"]
+                  [org.clojure/clojurescript "1.9.473"
+                   :exclusions [org.clojure/clojure]]
 
-                 [org.clojure/core.async "0.2.395"
-                  :exclusions [org.clojure/tools.reader]]
-                 [org.clojure/test.generative "0.5.2"
-                  :exclusions [org.clojure/tools.namespace]]
+                  [com.datomic/datomic-free "0.9.5554"]
+                  [org.clojure/tools.nrepl "0.2.12"]
+                  [org.clojure/tools.namespace "0.3.0-alpha3"
+                   :exclusions [org.clojure/tools.reader]]
 
-                 [com.stuartsierra/component "0.3.2"]
+                  [org.clojure/core.async "0.2.395"
+                   :exclusions [org.clojure/tools.reader]]
+                  [org.clojure/test.generative "0.5.2"
+                   :exclusions [org.clojure/tools.namespace]]
 
-                 [environ "1.1.0"]
-                 [boot-environ "1.1.0"]
+                  [com.stuartsierra/component "0.3.2"]
 
-                 [adzerk/boot-cljs-repl "0.3.3"]
-                 [adzerk/boot-cljs "2.0.0-SNAPSHOT" :scope "test"]
-                 [adzerk/boot-reload "0.5.0" :scope "test"]
+                  [environ "1.1.0"]
+                  [boot-environ "1.1.0"]
 
-                 [org.danielsz/system "0.3.2-SNAPSHOT"
-                  :exclusions [com.stuartsierra/component
-                               org.clojure/tools.reader]]
+                  [adzerk/boot-cljs-repl "0.3.3" :scope "test"]
+                  [adzerk/boot-cljs "2.0.0-SNAPSHOT" :scope "test"]
+                  [adzerk/boot-reload "0.5.0" :scope "test"]
 
-                 [reloaded.repl "0.2.3"
-                  :exclusions [com.stuartsierra/component
-                               com.stuartsierra/dependency
-                               org.clojure/tools.namespace]]
+                  [org.danielsz/system "0.3.2-SNAPSHOT"
+                   :exclusions [com.stuartsierra/component
+                                org.clojure/tools.reader]]
 
-                 [pandeiro/boot-http "0.7.6"]
+                  [reloaded.repl "0.2.3"
+                   :exclusions [com.stuartsierra/component
+                                com.stuartsierra/dependency
+                                org.clojure/tools.namespace]]
 
-                 [com.cemerick/piggieback "0.2.2-SNAPSHOT" :scope "test"
-                  :exclusions [com.google.guava/guava
-                               com.google.javascript/closure-compiler-externs
-                               org.clojure/tools.reader]]
-                 [weasel "0.7.0" :scope "test"
-                  :exclusions [http-kit com.google.guava/guava
-                               com.google.javascript/closure-compiler-externs
-                               org.clojure/tools.reader]]
+                  [com.cemerick/piggieback "0.2.2-SNAPSHOT" :scope "test"
+                   :exclusions [com.google.guava/guava
+                                com.google.javascript/closure-compiler-externs
+                                org.clojure/tools.reader]]
 
-                 [org.omcljs/om "1.0.0-alpha47"]
+                  [hiccup "1.0.5"]
+                  [javax.servlet/servlet-api "2.5"]
+                  [ring/ring "1.5.1"]
+                  [http-kit "2.2.0"]
+                  [bidi "2.0.16"]
 
-                 [onetom/boot-lein-generate "0.1.3" :scope "test"]]
+                  [binaryage/devtools "0.9.1" :scope "test"]
 
- :exclusions ['org.clojure/clojure
-              'org.clojure/clojurescript])
+                  [weasel "0.7.0" :scope "test"
+                   :exclusions [http-kit com.google.guava/guava
+                                com.google.javascript/closure-compiler-externs
+                                org.clojure/tools.reader]]
+
+                  [org.omcljs/om "1.0.0-alpha47"]
+
+                  [onetom/boot-lein-generate "0.1.3" :scope "test"]]
+
+  :exclusions ['org.clojure/clojure
+               'org.clojure/clojurescript])
 
 (require '[adzerk.boot-cljs :refer [cljs]]
          '[adzerk.boot-cljs-repl :refer [cljs-repl start-repl]]
@@ -60,33 +67,16 @@
          '[system.boot :refer [system run]]
          'boot.lein)
 
-`(set-env!
-  :repositories #(conj % ["my.datomic.com" {:url "https://my.datomic.com/repo"
-                                            :username (env :datomic-username)
-                                            :password (env :datomic-password)}]))
-
-`(set-env!
-  :dependencies
-  #(conj % '[com.datomic/datomic-pro "0.9.5554"
-             :exclusions [commons-codec
-                          com.google.guava/guava]]))
-
-(require '[om-learn.system :as system])
-
 (boot.lein/generate)
 
 (deftask dev []
-  (comp
-    (serve)
-    (environ :env {:http-port "3000"
-                   :db-uri "datomic:mem://chat"})
-    (watch)
-    (notify :visual true :title "CLJS")
-    (system :sys #'dev-system :auto true :files ["server.clj"])
-    (reload :ids #{"js/app"})
-    (cljs-repl :ids #{"js/app"})
-    (cljs :source-map true
-          :ids #{"js/app"}
-          :compiler-options {:parallel-build true
-                             :compiler-stats true})
-    (target)))
+         (comp
+           (environ :env {:http-port "3000"
+                          :db-uri    "datomic:mem://chat"})
+           (watch)
+           (speak)
+           (system :sys #'dev-system :auto true :files ["handler.clj"])
+           (reload)
+           (cljs-repl :nrepl-opts {:port 9009} :ids #{"js/app"})
+           (cljs)
+           (target)))

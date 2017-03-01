@@ -1,2 +1,4 @@
-{:require [om-learn.app]
- :compiler-options {:asset-path "js/app.out"}}
+{:require          [om-learn.app]
+ :compiler-options {:asset-path    "js/app.out"
+                    :preloads      [devtools.preload]
+                    :optimizations :none}}
