@@ -3,8 +3,11 @@
             [om.dom :as dom]))
 
 (defui ^:once Index
+  static om/IQuery
+  (query [this]
+         [:counter/count])
   Object
   (render [this]
-    (dom/div nil "index")))
+          (let [{:keys [counter/count]} (om/props this)]
+            (dom/div nil (str "index" count)))))
 
-(def index (om/factory Index))
