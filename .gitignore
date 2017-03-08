@@ -3,3 +3,4 @@ project.clj
 .nrepl-port
 target/
 out/
+.nrepl-history

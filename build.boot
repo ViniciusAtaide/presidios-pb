@@ -1,8 +1,7 @@
 (set-env!
  :source-paths #{"src/clj" "src/cljs"}
  :resource-paths #{"resources"}
- :dependencies '[[org.clojure/clojure "1.9.0-alpha14"]
-                 [org.clojure/clojurescript "1.9.473"
+ :dependencies  '[[org.clojure/clojurescript "1.9.473"
                   :exclusions [org.clojure/clojure
                                com.google.guava/guava]]
 
