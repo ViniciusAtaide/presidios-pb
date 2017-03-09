@@ -7,3 +7,14 @@ exit
 (stop)
 exit
 (boot (dev))
+(pushy)
+(require '[compassus.core :as compassus])
+compassus
+(compassus)
+(quit)
+(require '[bidi.bidi :as bidi])
+(bidi)
+(def p (future (boot (dev))))
+exti
+(def p (future (boot (dev))))
+(boot (dev))

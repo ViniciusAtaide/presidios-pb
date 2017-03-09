@@ -90,5 +90,5 @@
    (system :sys #'dev-system :auto true :files ["handler.clj"])
    (reload)
    (cljs-repl :ids #{"static/js/app"})
-   (cljs :ids #{"static/js/app"})
+   (cljs :ids #{"static/js/app"} :nrepl-opts {:port 3001})
    (target)))

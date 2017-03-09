@@ -12,5 +12,5 @@
   [:db (new-datomic-db (env :db-uri))
    :web (component/using
           (new-web-server (read-string (env :http-port))
-                          (make-handler handler))
+                          (make-handler (handler)))
           [:db])])
