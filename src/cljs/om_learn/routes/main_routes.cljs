@@ -1,4 +1,4 @@
-(ns om-learn.routes.index
+(ns om-learn.routes.main-routes
   (:require [om.next :as om :refer-macros [defui]]
             [om.dom :as dom]))
 

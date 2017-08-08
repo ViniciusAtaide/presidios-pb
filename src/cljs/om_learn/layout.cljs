@@ -6,7 +6,9 @@
   Object
   (render [this]
           (let [{:keys [factory props]} (om/props this)]
-            (dom/div nil
-                     (dom/p nil "layout")
-                     (factory props)))))
+            (dom/div #js {:className "row"}
+                     (dom/div #js {:className "four wide column"} nil)
+                     (dom/div #js {:className "four wide column"}
+                              (dom/p nil "layout"
+                              (factory props)))))))
 
