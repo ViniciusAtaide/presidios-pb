@@ -9,6 +9,6 @@
             (dom/div #js {:className "row"}
                      (dom/div #js {:className "four wide column"} nil)
                      (dom/div #js {:className "four wide column"}
-                              (dom/p nil "layout"
-                              (factory props)))))))
+                              (dom/p nil "layout")
+                              (factory props))))))
 

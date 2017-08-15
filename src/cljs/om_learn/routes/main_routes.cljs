@@ -5,4 +5,5 @@
 (defui ^:once Index
   Object
   (render [this]
-          (dom/div nil "index")))
+          (dom/div nil
+                   (dom/p nil "index"))))

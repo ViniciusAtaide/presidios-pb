@@ -81,6 +81,7 @@
          '[environ.core :refer [env]]
          '[environ.boot :refer [environ]]
          '[system.boot :refer [system run]])
+
 (deftask cider []
   (require 'boot.repl)
   (swap! @(resolve 'boot.repl/*default-dependencies*)
@@ -94,11 +95,11 @@
 
 (deftask dev []
   (comp
-   (environ :env {:http-port "3000"
-                  :db-uri    "datomic:mem://chat"})
+   (environ :env {:port   "3000"
+                  :db-uri "datomic:mem://chat"})
    (watch)
-   (system :sys #'dev-system :auto true :files ["handler.clj"])
+   (system :sys #'dev-system :auto true :files ["handler.clj" "system.clj"])
    (reload)
    (cljs-repl :ids #{"static/js/app"})
-   (cljs :ids #{"static/js/app"} :nrepl-opts {:port 3001})
+   (cljs :ids #{"static/js/app"})
    (target)))
