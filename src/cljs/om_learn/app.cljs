@@ -8,22 +8,17 @@
             [om-learn.routes :refer [routes bidi-routes]]
             [om-learn.layout :refer [Layout]]))
 
-(defonce app-state (atom {:counter/count 0}))
+(defonce app-state (atom {:navbar/active false :navbar/current-user "vinny"}))
 
 (declare app)
 
 (defmulti read om/dispatch)
 (defmulti mutate om/dispatch)
 
-(defmethod mutate 'increment
-  [{:keys [state]} _ _]
+(defmethod mutate 'change-user
+  [{:keys [state]} _ {:keys [new-name]}]
   {:action
-   #(swap! state update-in [:counter/count] inc)})
-
-(defmethod mutate 'decrement
-  [{:keys [state]} _ _]
-  {:action
-   #(swap! state update-in [:counter/count] dec)})
+   #(swap! state update-in [:navbar/current-user] new-name)})
 
 (defmethod read :default
   [{:keys [state]} key params]
@@ -58,6 +53,14 @@
                                           (compassus/will-unmount (fn [_]
                                                                    (pushy/stop! history)))]}))
 
-(compassus/mount! app (gdom/getElement "app"))
+(defonce mounted? (atom false))
 
-(enable-console-print!)
+(defn init! []
+  (enable-console-print!)
+  (if-not @mounted?
+    (do
+      (compassus/mount! app (gdom/getElement "app"))
+      (swap! mounted? not))
+    (let [route->component (-> app :config :route->component)
+          c (om/class->any (compassus/get-reconciler app) (get route->component (compassus/current-route app)))]
+      (.forceUpdate c))))

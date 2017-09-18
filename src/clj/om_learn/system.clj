@@ -11,7 +11,7 @@
 (defrecord WebServer [port db]
   component/Lifecycle
   (start [component]
-    (let [listener (yada/listener (routes db) {:port (read-string port)})]
+    (let [listener (yada/listener (routes db) {:port port})]
       (assoc component :listener listener)))
 
   (stop [component]
@@ -19,9 +19,8 @@
       (close))
     (assoc component :listener nil)))
 
-(defn dev-system []
-  (component/system-map
-   :db (new-datomic-db (env :db-uri))
+(defsystem dev-system
+  [:db (new-datomic-db (env :db-uri))
    :web (component/using
-         (map->WebServer {:port (env :port)})
-         [:db])))
+         (map->WebServer {:port (read-string (env :port))})
+         [:db])])

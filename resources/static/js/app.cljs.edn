@@ -1,4 +1,5 @@
-{:require          [om-learn.app]
+{:require  [om-learn.app]
+ :init-fns [om-learn.app/init!]
  :compiler-options
  {:asset-path    "static/js/app.out"
   :preloads      [devtools.preload]

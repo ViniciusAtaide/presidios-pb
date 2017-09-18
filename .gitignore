@@ -4,3 +4,4 @@ project.clj
 target/
 out/
 .nrepl-history
+.lein-repl-history
