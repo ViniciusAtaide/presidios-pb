@@ -8,30 +8,30 @@
             [om-learn.routes :refer [routes bidi-routes]]
             [om-learn.layout :refer [Layout]]))
 
-(defonce app-state (atom {:navbar/active false :navbar/current-user "vinny"}))
+(defonce app-state (atom {:navbar
+                          {:active "Menu 2" :current-user "vinny"}}))
 
 (declare app)
 
-(defmulti read om/dispatch)
 (defmulti mutate om/dispatch)
+
+(defn read
+  [{:keys [state] :as env} key params]
+  (let [st @state]
+    (if-let [[_ v] (find st key)]
+      {:value v}
+      {:value :not-found})))
 
 (defmethod mutate 'change-user
   [{:keys [state]} _ {:keys [new-name]}]
   {:action
-   #(swap! state update-in [:navbar/current-user] new-name)})
-
-(defmethod read :default
-  [{:keys [state]} key params]
-  (let [st @state]
-    (if-let [[_ value] (find st key)]
-      {:value value}
-      {:value :not-found})))
+   #(swap! state update-in [:navbar :current-user] new-name)})
 
 (def parser (compassus/parser {:read read :mutate mutate}))
 
 (defonce reconciler
-  (om/reconciler {:state  app-state
-                  :parser parser}))
+         (om/reconciler {:state  app-state
+                         :parser parser}))
 
 (defn update-route!
   [{:keys [handler] :as route}]
@@ -44,14 +44,14 @@
   (pushy/pushy update-route!
                (partial bidi/match-route bidi-routes)))
 
-(def app (compassus/application {:routes routes
+(def app (compassus/application {:routes      routes
                                  :index-route :index
-                                 :reconciler reconciler
-                                 :mixins [(compassus/wrap-render Layout)
-                                          (compassus/did-mount (fn [_]
-                                                                 (pushy/start! history)))
-                                          (compassus/will-unmount (fn [_]
-                                                                   (pushy/stop! history)))]}))
+                                 :reconciler  reconciler
+                                 :mixins      [(compassus/wrap-render Layout)
+                                               (compassus/did-mount (fn [_]
+                                                                      (pushy/start! history)))
+                                               (compassus/will-unmount (fn [_]
+                                                                         (pushy/stop! history)))]}))
 
 (defonce mounted? (atom false))
 
